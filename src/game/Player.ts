@@ -3,42 +3,32 @@ import { Keyboard } from "../utils/Keyboard";
 import { IHitbox } from "./IHitbox";
 import { PhysiscContainer } from "./PhysiscContainer";
 
-export class Player extends PhysiscContainer implements IHitbox{
+export class Player extends PhysiscContainer implements IHitbox {
 
-    private static readonly GRAVITY = 5;
-    private static readonly MOVE_SPEED =350; // 350; nover el pato
-    private static readonly JUMP_SPEED= 150;
+    private static readonly GRAVITY = 50;
+    //private static readonly MOVE_SPEED = 350; // 350; nover el pato
+    //private static readonly JUMP_SPEED= 150;
 
-    public canJump=true;
-    private lokiAnimated: AnimatedSprite;
-    private hitbox:Graphics;
+    public exploto = false;
+    private navePlayer: AnimatedSprite;
+    private hitbox: Graphics;
     constructor() {
         super();
         //animated sprite
-        this.lokiAnimated = new AnimatedSprite(
+        this.navePlayer = new AnimatedSprite(
             [
 
-                Texture.from("0"),
-                Texture.from("1"),
-                Texture.from("2"),
-                Texture.from("3"),
-                Texture.from("4"),
-                Texture.from("5"),
-                Texture.from("6"),
-                Texture.from("7"),
-                Texture.from("8"),
-                Texture.from("9"),
-                Texture.from("10"),
-                Texture.from("11"),
-                Texture.from("12"),
-                Texture.from("13"),
-                Texture.from("14"),
-                Texture.from("15"),
+                Texture.from("player1"),
+                Texture.from("player2"),
+
+
             ], true
         );
-        this.lokiAnimated.play();
-        this.lokiAnimated.anchor.set(0.5, 1);
-        this.lokiAnimated.animationSpeed = 0.2;
+        this.navePlayer.play();
+        this.navePlayer.anchor.set(0.5, 1);
+        this.navePlayer.animationSpeed = 0.8;
+        this.navePlayer.scale.x = 3;
+        this.navePlayer.scale.y = 3;
 
         const auxZero = new Graphics;
         auxZero.beginFill(0xff00ff);
@@ -46,93 +36,91 @@ export class Player extends PhysiscContainer implements IHitbox{
         auxZero.endFill();
 
         //---caja----
-        this.hitbox=new Graphics();
-        this.hitbox.beginFill(0xff00ff,0);
-        this.hitbox.drawRect(0,0,250,330);
+        this.hitbox = new Graphics();
+        this.hitbox.beginFill(0xff00ff, 0);
+        this.hitbox.drawRect(0, 0, 220, 80);
         this.hitbox.endFill;
-        this.hitbox.x=-150;
-        this.hitbox.y=-350;
-        
+        this.hitbox.x = -115;
+        this.hitbox.y = -115;
 
 
-        this.addChild(this.lokiAnimated);
+
+        this.addChild(this.navePlayer);
         this.addChild(auxZero);
-        this.lokiAnimated.addChild(this.hitbox);
+        this.navePlayer.addChild(this.hitbox);
 
         this.acceleration.y = Player.GRAVITY;
 
-        Keyboard.down.on("ArrowUp",this.jump, this);
+       
 
     }
-    
-    public override  destroy(options:any) {
+
+    public override  destroy(options: any) {
         super.destroy(options);
-        Keyboard.down.off("ArrowUp",this.jump);
+        
     }
 
     public override update(deltaMS: number) {
 
         super.update(deltaMS / 1000);
-        this.lokiAnimated.update(deltaMS / (1000 / 60));
+        this.navePlayer.update(deltaMS / (1000 / 60));
 
-    
+
         if (Keyboard.state.get("ArrowRight")) {
-            this.speed.x = Player.MOVE_SPEED;
-            this.lokiAnimated.scale.x=1;
-            this.lokiAnimated.play();
+            this.navePlayer.x +=50;
+            this.navePlayer.scale.x = 3;
+
+
 
         } else if (Keyboard.state.get("ArrowLeft")) {
-            this.speed.x = -Player.MOVE_SPEED;
-            this.lokiAnimated.scale.x=-1;
-            this.lokiAnimated.play();
+            this.navePlayer.x -=50;
+            this.navePlayer.scale.x = -3;
+
         } else {
             this.speed.x = 0;
-            this.lokiAnimated.stop();
+
         }
-        if(Keyboard.state.get("ArrowDown"))
-        {
-            this.acceleration.y=Player.GRAVITY*5;
-        }else
-        {
-            this.acceleration.y=Player.GRAVITY;
+        if (Keyboard.state.get("ArrowDown")) {
+            this.speed.y = 250;
+
+        } else if (Keyboard.state.get("ArrowUp")) {
+            this.speed.y = -250;
+
         }
 
-        
-    }
-    private jump(){
-        if(this.canJump)
-        {
-            this.canJump=false;
-            this.speed.y = -Player.JUMP_SPEED;
+        else {
+            this.acceleration.y = Player.GRAVITY;
         }
+
+
     }
-    public getHitbox():Rectangle
-    {
+    /* private jump(){
+         if(this.canJump)
+         {
+             this.canJump=false;
+             this.speed.y = -Player.JUMP_SPEED;
+         }
+     }*/
+    public getHitbox(): Rectangle {
         return this.hitbox.getBounds();
     }
     public separate(overlap: Rectangle, platform: ObservablePoint<any>) {
-        if (overlap.width < overlap.height)
-                {
-                    if (this.x > platform.x)
-                    {
-                        this.x += overlap.width;
-                    }else if (this.x < platform.x)
-                    {
-                        this.x -= overlap.width;
-                    }
+        if (overlap.width < overlap.height) {
+            if (this.x > platform.x) {
+                this.x += overlap.width;
+            } else if (this.x < platform.x) {
+                this.x -= overlap.width;
+            }
 
-                }
-                else
-                {
-                    if (this.y > platform.y)
-                    {
-                        this.y -= overlap.height;
-                        this.speed.y = 0;
-                        this.canJump = true;
-                    }else if (this.y < platform.y)
-                    {
-                        this.y += overlap.height;
-                    }
-                }
+        }
+        else {
+            if (this.y > platform.y) {
+                this.y -= overlap.height;
+                this.speed.y = 0;
+                this.exploto = true;
+            } else if (this.y < platform.y) {
+                this.y += overlap.height;
+            }
+        }
     }
 }

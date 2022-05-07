@@ -1,4 +1,4 @@
-import { Container,/* Texture, TilingSprite, /*Sprite*/ } from "pixi.js";
+import { Container,  /*Texture,  TilingSprite al final para que no se frene*/ } from "pixi.js";
 import { HEIGHT, WIDTH } from "..";
 import { checkCollision } from "../game/IHitbox";
 
@@ -11,13 +11,13 @@ import { IUpdateable } from "../utils/IUpdateable";
 
 export class Scene extends Container implements IUpdateable {
 
-    private playerLoki: Player;
+    private playerNave: Player;
 
     private platforms: Platform[];
 
     private world: Container;
 
-   // private background: TilingSprite;
+   // private background: TilingSprite;//al final para que no se frene
 
     private gameSpeed:number=300;
 
@@ -29,9 +29,9 @@ export class Scene extends Container implements IUpdateable {
 
         super();
         this.world = new Container();
-        //   const bg=Sprite.from("Background");
-     //   this.background = new TilingSprite(Texture.from("Background"), WIDTH, HEIGHT);
-       // this.addChild(this.background);
+       
+       /* this.background = new TilingSprite(Texture.from("Background"), WIDTH, HEIGHT);
+        this.addChild(this.background);*/ //al final para que no se frene
 
         this.platforms = [];
 
@@ -41,25 +41,20 @@ export class Scene extends Container implements IUpdateable {
         this.platforms.push(plat);
 
         plat = new Platform()
-        plat.position.set(1000, 600);
+        plat.position.set(1100, 600);
         this.world.addChild(plat);
         this.platforms.push(plat);
 
         plat = new Platform()
-        plat.position.set(1800, 500);
+        plat.position.set(1900, 500);
         this.world.addChild(plat);
         this.platforms.push(plat);
 
-     // plat = new Platform()
-     // plat.position.set(-500, 700);
-     // this.world.addChild(plat);
-     // this.platforms.push(plat);
-
-        this.playerLoki = new Player();
-        this.playerLoki.x=300;
-        this.playerLoki.y=300;
-        this.playerLoki.scale.set(0.5)
-        this.world.addChild(this.playerLoki);
+        this.playerNave = new Player();
+        this.playerNave.x=300;
+        this.playerNave.y=300;
+        this.playerNave.scale.set(0.5)
+        this.world.addChild(this.playerNave);
 
         this.addChild(this.world);
     }
@@ -76,14 +71,15 @@ export class Scene extends Container implements IUpdateable {
             this.platforms.push(plat);
         }
 
-        this.playerLoki.update(deltaTime);
+        this.playerNave.update(deltaTime);
 
         for (let platform of this.platforms) {
             platform.speed.x=-this.gameSpeed;
             platform.update(deltaTime/1000);
-            const overlap = checkCollision(this.playerLoki, platform);
+           
+            const overlap = checkCollision(this.playerNave, platform);
             if (overlap != null) {
-                this.playerLoki.separate(overlap, platform.position);
+                this.playerNave.separate(overlap, platform.position);
             }
             if(platform.getHitbox().right<0)
             {
@@ -93,18 +89,18 @@ export class Scene extends Container implements IUpdateable {
         }
         this.platforms=this.platforms.filter((elem)=>!elem.destroyed);
 
-        this.world.x = -this.playerLoki.x * this.worldTransform.a + WIDTH / 4;
-       // this.background.tilePosition.x -= this.gameSpeed * deltaTime/1000; this.world.x * 0.2;
+        this.world.x = -this.playerNave.x * this.worldTransform.a + WIDTH / 4;
+      //  this.background.tilePosition.x -= this.gameSpeed * deltaTime/1000* this.world.x * 0.1; //al final para que no se frene
 
-        // if (this.playerLoki.x > WIDTH) {
-            // this.playerLoki.x = WIDTH - 430;
-        //} else if (this.playerLoki.x < 0) {
-             this.playerLoki.x = 430;
-        // }*/
+         if (this.playerNave.x > WIDTH) {
+             this.playerNave.x = WIDTH - 430;
+        } else if (this.playerNave.x < 0) {
+             this.playerNave.x = 430;
+         }
 
-       if (this.playerLoki.y > HEIGHT) {
-            this.playerLoki.y = HEIGHT;
-            this.playerLoki.canJump = true;
+       if (this.playerNave.y > HEIGHT) {
+            this.playerNave.y = HEIGHT;
+            this.playerNave.exploto = true;
         }//para perder al caer del mundo
 
 
