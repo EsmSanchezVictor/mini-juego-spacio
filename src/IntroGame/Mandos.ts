@@ -1,4 +1,4 @@
-import { AnimatedSprite, Container, Point,  Texture } from "pixi.js";
+import {  Container, Point,  Texture } from "pixi.js";
 
 import { Button } from "../ui/Button";
 
@@ -8,38 +8,38 @@ export class Mandos extends Container {
     private atras: Button;
     private repetir: Button;
     private home: Button;
-    private animaIntro:AnimatedSprite;
+    //private animaIntro:AnimatedSprite;
     
    
     constructor() {
         super();
-        this.animaIntro = new AnimatedSprite(
-            [
+  //   this.animaIntro = new AnimatedSprite(
+  //       [
 
-                Texture.from("fondoIO1" ),
-                Texture.from("fondoIO3" ),
-                Texture.from("fondoIO5" ),
-                Texture.from("fondoIO7" ),
-                Texture.from("fondoIO9" ),
-                Texture.from("fondoIO11"),
-                Texture.from("fondoIO13"),
-                Texture.from("fondoIO15"),
-                Texture.from("fondoIO17"),
-                Texture.from("fondoIO19"),
-                Texture.from("fondoIO21"),
-                Texture.from("fondoIO23"),
+  //           Texture.from("fondoIO1" ),
+  //           Texture.from("fondoIO3" ),
+  //           Texture.from("fondoIO5" ),
+  //           Texture.from("fondoIO7" ),
+  //           Texture.from("fondoIO9" ),
+  //           Texture.from("fondoIO11"),
+  //           Texture.from("fondoIO13"),
+  //           Texture.from("fondoIO15"),
+  //           Texture.from("fondoIO17"),
+  //           Texture.from("fondoIO19"),
+  //           Texture.from("fondoIO21"),
+  //           Texture.from("fondoIO23"),
 
 
-            ], true
-        );
-        //this.animaIntro.play();
-        this.animaIntro.anchor.set(1, 1);
-        this.animaIntro.animationSpeed = 0.8;
-        this.animaIntro.scale.x = 15;
-        this.animaIntro.scale.y = 10;
-        this.animaIntro.position.x=4000;
-        this.animaIntro.position.y=1300;
-        this.addChild(this.animaIntro);
+  //       ], true
+  //   );
+  //   //this.animaIntro.play();
+  //   this.animaIntro.anchor.set(1, 1);
+  //   this.animaIntro.animationSpeed = 0.8;
+  //   this.animaIntro.scale.x = 15;
+  //   this.animaIntro.scale.y = 10;
+  //   this.animaIntro.position.x=4000;
+  //   this.animaIntro.position.y=1300;
+  //   this.addChild(this.animaIntro);
          
 
 

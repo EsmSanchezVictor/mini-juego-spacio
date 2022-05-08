@@ -1,8 +1,8 @@
-import { Container,NineSlicePlane,Point,Sprite,Text,Texture } from "pixi.js";
+import { Container,NineSlicePlane,Point,/*Sprite*/Text,Texture } from "pixi.js";
 
 export class Puntos extends Container{
 private textBlancos: Text;
-private textMonedas: Text;
+//private textMonedas: Text;
     constructor(){
         super();
       
@@ -11,13 +11,14 @@ private textMonedas: Text;
             Texture.from("contenedor"),35,35,35,35
 
         );
-        contenedor.scale.set(1.8,0.5);
+        contenedor.scale.set(2.5,0.3);
+        contenedor.position.x=-200;
         
-        const panelBlancos: Sprite = Sprite.from("puntos");
+       /* const panelBlancos: Sprite = Sprite.from("puntos");
             panelBlancos.position.set(100,100);
             panelBlancos.scale.set(1,1);
 
-        const panelMonedas: Sprite = Sprite.from("puntos");
+       const panelMonedas: Sprite = Sprite.from("puntos");
             panelMonedas.position.set(100,100);
             panelMonedas.scale.set(1,1);
 
@@ -28,12 +29,12 @@ private textMonedas: Text;
 
         const monedas: Sprite = Sprite.from("monedas");
             monedas.position.set(180,120);
-            monedas.scale.set(0.5,0.5);
+            monedas.scale.set(0.5,0.5);*/
 
-        this.textBlancos= new Text("hello word",{fontSize: 40,fill:0x00e000, fontFamily:"Comic Sans MS"});
-            this.textBlancos.text="5/12 Blancos acertados"
+        this.textBlancos= new Text("hello word",{fontSize: 50,fill:0x00e000, fontFamily:"Comic Sans MS"});
+            this.textBlancos.text="NATALIA NATALIA Listo"
             this.textBlancos.scale.set(1);
-            this.textBlancos.position.set(400,70);
+            this.textBlancos.position.set(120,50);
 
             // evento de teclado
            // document.addEventListener("keydown", this.onKeyDown.bind(this));
@@ -41,10 +42,10 @@ private textMonedas: Text;
 
 
 
-        this.textMonedas= new Text("hello word",{fontSize: 40,fill:0x00e000, fontFamily:"Comic Sans MS"});
+        /*this.textMonedas= new Text("hello word",{fontSize: 40,fill:0x00e000, fontFamily:"Comic Sans MS"});
             this.textMonedas.text="3000 Monedas obtenidas"
             this.textMonedas.scale.set(1);
-            this.textMonedas.position.set(330,180);
+            this.textMonedas.position.set(330,180);*/
             
             // evento de teclado
           //  document.addEventListener("keyup", this.onKeyUp.bind(this));
@@ -52,19 +53,19 @@ private textMonedas: Text;
        
             
         this.addChild(contenedor);
-        this.addChild(monedas);
-        this.addChild(blancos);
+        //this.addChild(monedas);
+     //   this.addChild(blancos);
         this.addChild(this.textBlancos);
-        this.addChild(this.textMonedas);
+       // this.addChild(this.textMonedas);
         
-        this.textMonedas.toGlobal(new Point()); 
-	    this.textMonedas.parent.toGlobal(this.textMonedas.position);
+        /*this.textMonedas.toGlobal(new Point()); 
+	    this.textMonedas.parent.toGlobal(this.textMonedas.position);*/
         this.textBlancos.toGlobal(new Point()); 
 	    this.textBlancos.parent.toGlobal(this.textBlancos.position);
-        monedas.toGlobal(new Point()); 
+       /* monedas.toGlobal(new Point()); 
 	    monedas.parent.toGlobal(monedas.position);
         blancos.toGlobal(new Point()); 
-	    blancos.parent.toGlobal(blancos.position);
+	    blancos.parent.toGlobal(blancos.position);*/
         
     }
   /*  private onKeyDown(e:KeyboardEvent):void{
