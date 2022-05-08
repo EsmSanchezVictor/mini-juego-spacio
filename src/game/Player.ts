@@ -69,6 +69,7 @@ export class Player extends PhysiscContainer implements IHitbox {
         if (Keyboard.state.get("ArrowRight")) {
             this.navePlayer.x +=50;
             this.navePlayer.scale.x = 3;
+            console.log("deracha");
 
 
 

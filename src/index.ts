@@ -1,7 +1,8 @@
 
-import { Application,  Loader, Ticker,  } from 'pixi.js'
+import { Application,  Loader, Ticker } from 'pixi.js'
 import { asseets } from './assets';
-import { Scene } from './Scenes/Scene';
+import { Main } from './Scenes/main';
+import { PrimeraVista } from './Scenes/PrimeraVista';
 import { Keyboard } from './utils/Keyboard';
 
 
@@ -45,14 +46,21 @@ window.dispatchEvent(new Event("resize"));
 Loader.shared.add(asseets);
 
 Loader.shared.onComplete.add(()=>{
-	const myScene = new Scene();
-	app.stage.addChild(myScene);
+	const pPal = new Main();
+	app.stage.addChild(pPal);
 	Ticker.shared.add(function (deltaFrame){
-		myScene.update(Ticker.shared.deltaMS, deltaFrame);
-	});
+		const myPrimera= new PrimeraVista;
+		myPrimera.update(Ticker.shared.deltaMS, deltaFrame);
+		//this.addChild(myPrimera);
+		
+	}); 
+	
+	
 });
 
 Loader.shared.load();
+
+
 
 
 

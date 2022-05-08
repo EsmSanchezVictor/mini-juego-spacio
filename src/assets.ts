@@ -12,10 +12,7 @@ export const asseets=[
     { url: "./explota/9.png", name: "explota9" },
     { url: "./explota/10.png", name: "explota10" },
     { url: "./explota/11.png", name: "explota11" },
-    { url: "./explota/12.png", name: "explota12" },
-    { url: "./explota/13.png", name: "explota13" },
-    { url: "./explota/14.png", name: "explota14" },
-    { url: "./explota/15.png", name: "explota15" },
+ 
     
     { url: "./asteroidegris/a10000.png", name: "asteroideg0" },
     { url: "./asteroidegris/a10001.png", name: "asteroideg1" },
@@ -55,15 +52,56 @@ export const asseets=[
     { url: "./naveplayer/nave2.png", name: "player2" },
 
     
-    { url: "./navepolicia/nave1.png", name: "poli1" },
-    { url: "./navepolicia/nave2.png", name: "poli2" },
-    { url: "./navepolicia/nave1.png", name: "poli3" },
+    { url: "./navepolicia/poli1.png", name: "poli1" },
+    { url: "./navepolicia/poli2.png", name: "poli2" },
+    { url: "./navepolicia/poli3.png", name: "poli3" },
     
     {url: "./espacio/Tileable..jpg", name:"Background"},
     {url: "./espacio/block.png", name:"Block"},
     {url: "./espacio/cactus.png", name:"Cactus"},
     {url: "./espacio/platform.png", name:"Platform"},
+
+
+    //monigote
+
+    { url: "./pngegg.png", name: "loki" },
+    { url: "./fez.png", name: "Fez" },
     
+//paneles
+  
+    { url: "./panel/panel.png", name: "panelLcd" },
+    { url: "./panel/completo.png", name: "completoNivel" },
+    { url: "./panel/mandos.png", name: "mandos" },
+    { url: "./panel/puntos.png", name: "puntos" },
+    { url: "./panel/contenedor.png", name: "contenedor" },
+//estrellas
+
+    { url: "./estrellas/estrella.png", name: "estrella" },
+    { url: "./estrellas/mediaestrella.png", name: "mediaEstrella" },
+    { url: "./estrellas/sinestrella.png", name: "sinEstrella" },
+
+//iconos
+
+    { url: "./iconos/adelante.png", name: "adelante" },
+    { url: "./iconos/atras.png", name: "atras" },
+    { url: "./iconos/blancos.png", name: "blancos" },
+    { url: "./iconos/monedas.png", name: "monedas" },
+    { url: "./iconos/repetir.png", name: "repetir" },
+    { url: "./iconos/home.png", name: "home" },
+
+//fondo in out
+
+
+{ url: "./fondoInOut/1.png", name: "fondoIO1" },
+{ url: "./fondoInOut/3.png", name: "fondoIO3" },
+{ url: "./fondoInOut/5.png", name: "fondoIO5" },
+{ url: "./fondoInOut/7.png", name: "fondoIO7" },
+{ url: "./fondoInOut/9.png", name: "fondoIO9" },
+{ url: "./fondoInOut/11.png", name:"fondoIO11" },
+{ url: "./fondoInOut/13.png", name:"fondoIO13" },
+{ url: "./fondoInOut/15.png", name:"fondoIO15" },
+{ url: "./fondoInOut/17.png", name:"fondoIO17" },
+{ url: "./fondoInOut/19.png", name:"fondoIO19" },
+{ url: "./fondoInOut/21.png", name:"fondoIO21" },  
+{ url: "./fondoInOut/23.png", name:"fondoIO23" },  
 ];
-
-

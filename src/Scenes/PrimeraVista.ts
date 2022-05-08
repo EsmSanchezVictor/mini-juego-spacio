@@ -1,4 +1,4 @@
-import { Container,  /*Texture,  TilingSprite al final para que no se frene*/ } from "pixi.js";
+import { Container} from "pixi.js";
 import { HEIGHT, WIDTH } from "..";
 import { checkCollision } from "../game/IHitbox";
 
@@ -9,7 +9,7 @@ import { IUpdateable } from "../utils/IUpdateable";
 
 
 
-export class Scene extends Container implements IUpdateable {
+export class PrimeraVista extends Container implements IUpdateable {
 
     private playerNave: Player;
 
@@ -61,12 +61,12 @@ export class Scene extends Container implements IUpdateable {
     public update(deltaTime: number, _deltaFrame: number): void {
         this.timePassed +=deltaTime;
 
-        if(this.timePassed > (2000*200/this.gameSpeed))
+        if(this.timePassed > (3000*200/this.gameSpeed))
         {
             this.gameSpeed+=5;
             this.timePassed=0;
             const plat = new Platform()
-            plat.position.set(WIDTH, Math.random()*1000);
+            plat.position.set(WIDTH, Math.random()*1600);
             this.world.addChild(plat);
             this.platforms.push(plat);
         }
