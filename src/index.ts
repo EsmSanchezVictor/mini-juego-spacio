@@ -1,7 +1,6 @@
 
-import { Application,  Loader, Ticker } from 'pixi.js'
+import { Application, Loader, Ticker } from 'pixi.js'
 import { asseets } from './assets';
-import { Main } from './Scenes/main';
 import { PrimeraVista } from './Scenes/PrimeraVista';
 import { Keyboard } from './utils/Keyboard';
 
@@ -21,7 +20,7 @@ const app = new Application({
 
 Keyboard.initialize();
 
-window.addEventListener("resize", ()=>{
+window.addEventListener("resize", () => {
 	const scaleX = window.innerWidth / app.screen.width;
 	const scaleY = window.innerHeight / app.screen.height;
 	const scale = Math.min(scaleX, scaleY);
@@ -45,17 +44,19 @@ window.dispatchEvent(new Event("resize"));
 
 Loader.shared.add(asseets);
 
-Loader.shared.onComplete.add(()=>{
-	const pPal = new Main();
-	app.stage.addChild(pPal);
-	Ticker.shared.add(function (deltaFrame){
-		const myPrimera= new PrimeraVista;
+Loader.shared.onComplete.add(() => {
+
+	const myPrimera = new PrimeraVista;
+	app.stage.addChild(myPrimera);
+	Ticker.shared.add(function (deltaFrame) {
+
 		myPrimera.update(Ticker.shared.deltaMS, deltaFrame);
-		//this.addChild(myPrimera);
-		
-	}); 
-	
-	
+
+		console.log("bueno");
+		this.valor = false;
+	});
+
+
 });
 
 Loader.shared.load();
