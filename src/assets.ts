@@ -10,8 +10,8 @@ export const asseets=[
     { url: "./explota/7.png", name: "explota7" },
     { url: "./explota/8.png", name: "explota8" },
     { url: "./explota/9.png", name: "explota9" },
-    { url: "./explota/10.png", name: "explota10" },
-    { url: "./explota/11.png", name: "explota11" },
+    { url: "./explota/10.png", name:"explota10" },
+    { url: "./explota/11.png", name:"explota11" },
  
     
     { url: "./asteroidegris/a10000.png", name: "asteroideg0" },

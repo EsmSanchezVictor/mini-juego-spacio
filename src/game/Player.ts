@@ -15,9 +15,11 @@ export class Player extends PhysiscContainer implements IHitbox {
     public rayo2: AnimatedSprite;
     public disparo:Boolean=false;
     private hitbox: Graphics;
+    public estado:Boolean=true;
     constructor() {
         super();
         //animated sprite
+        
         this.navePlayer = new AnimatedSprite(
             [
 
@@ -179,6 +181,7 @@ export class Player extends PhysiscContainer implements IHitbox {
     public separate(overlap: Rectangle, platform: ObservablePoint<any>) {
         if (overlap.width < overlap.height) {
             this.navePlayer.tint = 0xf00000;
+            //this.estado=false;
             if (this.x > platform.x) 
             {
                 this.y +=Math.random() * 50// overlap.width+200;
@@ -189,6 +192,7 @@ export class Player extends PhysiscContainer implements IHitbox {
 
         }
         else {
+            this.estado=false;
             this.navePlayer.tint = 0xf00000;
             if (this.y > platform.y) 
             {

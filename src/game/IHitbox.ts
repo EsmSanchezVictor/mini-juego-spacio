@@ -5,7 +5,9 @@ export interface IHitbox {
 }
 
 export function checkCollision(objA:IHitbox, objB:IHitbox):Rectangle | null 
+
 {
+    
     const rA = objA.getHitbox();
     const rB = objB.getHitbox();
 

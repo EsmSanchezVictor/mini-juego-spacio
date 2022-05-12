@@ -8,6 +8,7 @@ import { Player } from "../game/Player";
 import { IUpdateable } from "../utils/IUpdateable";
 import { Vitalidad } from "../game/Vitalidad";
 import { Puntos } from "./Puntos";
+import { Explosion } from "../game/explosion";
 
 
 
@@ -15,7 +16,7 @@ import { Puntos } from "./Puntos";
 
 
 export class PrimeraVista extends Container implements IUpdateable {
-
+    private explosion:Explosion;
     private playerNave: Player;
     private vital: Vitalidad;
     private platforms: Platform[];
@@ -29,7 +30,7 @@ export class PrimeraVista extends Container implements IUpdateable {
     //private background: TilingSprite;//al final para que no se frene
 
     private gameSpeed: number = 300;
-    private aux: Boolean =true;
+   // private aux: Boolean =true;
   //  private aux2: Boolean =true;
     private timePassed: number = 0;
     private timePassed2: number = 0;
@@ -46,6 +47,7 @@ export class PrimeraVista extends Container implements IUpdateable {
         this.platformPoli = [];
         this.world = new Container();
         this.playerNave = new Player();
+        this.explosion=new Explosion;
         
 
         //this.removeChild(intro.worldI);
@@ -137,26 +139,31 @@ export class PrimeraVista extends Container implements IUpdateable {
                 this.playerNave.navePlayer.tint = 0xf00000;
                 platform.asteroideg.tint = 0xf00000;
                 this.playerNave.separate(overlap, platform.position);
-                if (this.aux == true && this.playerNave.disparo==false) {
+                if (this.playerNave.estado == true && this.playerNave.disparo==false) {
                     this.cantidadVida -= 5;
                     this.vital.textBlancos.text = "Vitalidad | " + this.cantidadVida + "%";
-                    this.aux = false;
-                    console.log("aca")
+                    this.playerNave.estado = false;
+                   
                 }
                 if (this.playerNave.disparo==true ){
+                    this.explosion.x=platform.x;
+                    this.explosion.y=platform.y;
                     this.world.removeChild(platform);
-                    this.cantidadVida += 5;
-                    this.aux=false;
+                    this.world.addChild(this.explosion);
+                    this.playerNave.estado=true;
+                   // this.cantidadVida += 5;
+                    //this.aux = false;
+                   
                 }
 
             }else
                 {  // siempre entra aqui.....!!!!!!!!!!!!!!!!!!!!!!!
-                this.aux = true;
-                console.log("aqui")
+                this.playerNave.estado=true;
                 this.cantidadPuntos += 2;
                 this.vital.textMonedas.text = this.cantidadPuntos + " Monedas obtenidas";
                 this.playerNave.navePlayer.tint = 0xffffff;
                 platform.asteroideg.tint = 0xffffff;
+                
                 }
            
                 
