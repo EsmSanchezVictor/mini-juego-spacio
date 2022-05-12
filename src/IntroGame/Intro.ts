@@ -1,6 +1,6 @@
 import { Container,NineSlicePlane,Point,/*Sprite*/Text,Texture } from "pixi.js";
 
-export class Puntos extends Container{
+export class Intro extends Container{
 private textBlancos: Text;
 //private textMonedas: Text;
     constructor(){

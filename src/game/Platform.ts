@@ -4,7 +4,7 @@ import { PhysiscContainer } from "./PhysiscContainer";
 
 export class Platform extends PhysiscContainer /*Container  nover el pato*/ implements IHitbox {
     private hitbox: Graphics;
-    private asteroideg:AnimatedSprite;
+    public asteroideg:AnimatedSprite;
     
     constructor()
     {
@@ -43,7 +43,7 @@ export class Platform extends PhysiscContainer /*Container  nover el pato*/ impl
         this.addChild(this.asteroideg);
 
         this.hitbox = new Graphics();
-        this.hitbox.beginFill(0x00FFFF, 0);
+        this.hitbox.beginFill(0x00FFFF, 0.2);
         this.hitbox.drawRect(0,0,183,183);
         this.hitbox.endFill();
         this.hitbox.x=-90;

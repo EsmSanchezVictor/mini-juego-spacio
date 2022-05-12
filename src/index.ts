@@ -52,7 +52,7 @@ Loader.shared.onComplete.add(() => {
 
 		myPrimera.update(Ticker.shared.deltaMS, deltaFrame);
 
-		console.log("bueno");
+		
 		this.valor = false;
 	});
 

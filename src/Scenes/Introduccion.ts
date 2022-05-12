@@ -5,7 +5,7 @@ AnimatedSprite} from "pixi.js";
 import { Lokihat } from "../IntroGame/Lokihat";  // imagen de loki con sombrero 
 //import { Estrellas } from "../IntroGame/Estrellas"; // cantidad de estralla obtenidas
 import { Nivel } from "../IntroGame/Nivel"; // mensaje de estado de nivel
-import { Puntos } from "../IntroGame/Puntos"; // cantidad de puntos y objetivos obtiendos 
+import { Intro } from "../IntroGame/Intro"; // cantidad de puntos y objetivos obtiendos 
 
 //import { Mandos } from "../IntroGame/Mandos";
 import { HEIGHT, WIDTH } from "..";
@@ -98,11 +98,11 @@ export class Introduccion extends Container {
         this.worldI.addChild(nivel);
 
         //panel de puntos
-        const puntos: Puntos = new Puntos();
-        puntos.scale.set(0.5);
-        puntos.x = this.posRelX - 5;
-        puntos.y = this.posRelY + 250;
-        this.worldI.addChild(puntos);
+        const introd: Intro = new Intro();
+        introd.scale.set(0.5);
+        introd.x = this.posRelX - 5;
+        introd.y = this.posRelY + 250;
+        this.worldI.addChild(introd);
        
 
     
@@ -140,11 +140,11 @@ export class Introduccion extends Container {
 
     private onKeyBup(): void {
 
-        console.log("solte la B");
+        
         if (this.valor == false && this.valor2 == false) {
             this.removeChild(this.worldI);
             this.worldI.destroy();
-            console.log("11");
+          
         } else {
             this.valor = false;
             this.valor2 = true;

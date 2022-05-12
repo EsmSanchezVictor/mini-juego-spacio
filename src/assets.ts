@@ -104,4 +104,9 @@ export const asseets=[
 { url: "./fondoInOut/19.png", name:"fondoIO19" },
 { url: "./fondoInOut/21.png", name:"fondoIO21" },  
 { url: "./fondoInOut/23.png", name:"fondoIO23" },  
+
+
+{ url: "./rayo/rayo1.png", name: "rayo1" },
+{ url: "./rayo/rayo2.png", name: "rayo2" },
+{ url: "./rayo/rayo3.png", name: "rayo3" },
 ];
