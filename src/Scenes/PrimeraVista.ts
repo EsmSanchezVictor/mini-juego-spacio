@@ -1,4 +1,4 @@
-import { Container } from "pixi.js";
+import { Container, Texture, TilingSprite } from "pixi.js";
 import { HEIGHT, WIDTH } from "..";
 import { checkCollision } from "../game/IHitbox";
 import { Introduccion } from "./Introduccion";
@@ -27,14 +27,14 @@ export class PrimeraVista extends Container implements IUpdateable {
     public puntos: Puntos;
     
 
-    //private background: TilingSprite;//al final para que no se frene
+    private background: TilingSprite;//al final para que no se frene
 
     private gameSpeed: number = 300;
-   // private aux: Boolean =true;
-  //  private aux2: Boolean =true;
+  
+    
     private timePassed: number = 0;
     private timePassed2: number = 0;
-
+    private deltaT: number = 0;
 
 
     constructor() {
@@ -52,8 +52,8 @@ export class PrimeraVista extends Container implements IUpdateable {
 
         //this.removeChild(intro.worldI);
 
-        // this.background = new TilingSprite(Texture.from("Background"), WIDTH, HEIGHT);
-        // this.addChild(this.background); //al final para que no se frene
+         this.background = new TilingSprite(Texture.from("Background"), WIDTH, HEIGHT);
+         this.addChild(this.background); //al final para que no se frene
 
 
 
@@ -135,12 +135,13 @@ export class PrimeraVista extends Container implements IUpdateable {
 
             const overlap = checkCollision(this.playerNave, platform);
 
-            if (overlap != null) {
+            if (overlap != null)
+             {
                 this.playerNave.navePlayer.tint = 0xf00000;
                 platform.asteroideg.tint = 0xf00000;
                 this.playerNave.separate(overlap, platform.position);
                 if (this.playerNave.estado == true && this.playerNave.disparo==false) {
-                    this.cantidadVida -= 5;
+                    this.cantidadVida -= 2;
                     this.vital.textBlancos.text = "Vitalidad | " + this.cantidadVida + "%";
                     this.playerNave.estado = false;
                    
@@ -149,15 +150,22 @@ export class PrimeraVista extends Container implements IUpdateable {
                     this.explosion.x=platform.x;
                     this.explosion.y=platform.y;
                     this.world.removeChild(platform);
+
                     this.world.addChild(this.explosion);
+                  
+                   
                     this.playerNave.estado=true;
-                   // this.cantidadVida += 5;
-                    //this.aux = false;
+                
                    
                 }
-
+                this.deltaT+= deltaTime;
+                if(this.deltaT> (1000 * 200 / this.gameSpeed)){
+                    this.explosion.explosion.stop();
+                    this.world.removeChild(this.explosion);
+                    this.deltaT=0;
+                }
             }else
-                {  // siempre entra aqui.....!!!!!!!!!!!!!!!!!!!!!!!
+                { 
                 this.playerNave.estado=true;
                 this.cantidadPuntos += 2;
                 this.vital.textMonedas.text = this.cantidadPuntos + " Monedas obtenidas";
@@ -174,27 +182,44 @@ export class PrimeraVista extends Container implements IUpdateable {
             }
 
         }
-       /* for (let platformPoli of this.platformPoli) {
+        for (let platformPoli of this.platformPoli) {
             platformPoli.speed.x = -this.gameSpeed;
             platformPoli.update(deltaTime / 1000);
           
             const overlap2 = checkCollision(this.playerNave, platformPoli);
             if (overlap2 != null) 
             {
-                this.playerNave.separate(overlap2, platformPoli.position);
                 this.playerNave.navePlayer.tint = 0xf00000;
                 platformPoli.navepoli.tint = 0xf00000;
+                this.playerNave.separate(overlap2, platformPoli.position);
                 
-                if (this.aux2 == true) {
-                    this.cantidadVida -= 5;
+                
+                if (this.playerNave.estado2 == true  &&  this.playerNave.disparo==false) {
+                    this.cantidadVida -= 2;
                     this.vital.textBlancos.text = "Vitalidad | " + this.cantidadVida + "%";
-                    this.aux2 = false;
+                    this.playerNave.estado2 = false;
                 }
-               
+                if (this.playerNave.disparo==true ){
+                    this.explosion.x=platformPoli.x;
+                    this.explosion.y=platformPoli.y;
+                    this.world.removeChild(platformPoli);
+                    this.world.addChild(this.explosion);
+                  
+                  
+                  this.playerNave.estado2=true;
+                  
+                   
+                }
+                this.deltaT+= deltaTime;
+                if(this.deltaT> (1000 * 200 / this.gameSpeed)){
+                    this.explosion.explosion.stop();
+                    this.world.removeChild(this.explosion);
+                    this.deltaT=0;
+                }
             }else
                 {
                 
-                this.aux2 = true;
+                this.playerNave.estado2 = true;
                 this.cantidadPuntos += 2;
                 this.vital.textMonedas.text = this.cantidadPuntos + " Monedas obtenidas";
                 platformPoli.navepoli.tint = 0xffffff;
@@ -204,12 +229,12 @@ export class PrimeraVista extends Container implements IUpdateable {
             if (platformPoli.getHitbox().right < 0) {
                 platformPoli.destroy();
             }
-        }*/
+        }
        
         this.platforms = this.platforms.filter((elem) => !elem.destroyed);
         this.platformPoli = this.platformPoli.filter((elem) => !elem.destroyed);
         this.world.x = -this.playerNave.x * this.worldTransform.a + WIDTH / 4;
-        //  this.background.tilePosition.x -= this.gameSpeed * deltaTime/1000* this.world.x * 0.1; //al final para que no se frene
+       this.background.tilePosition.x -= this.gameSpeed * deltaTime/1000* this.world.x * 0.1; //al final para que no se frene
 
         if (this.playerNave.x > WIDTH) {
             this.playerNave.x = WIDTH - 430;

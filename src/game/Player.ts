@@ -16,6 +16,7 @@ export class Player extends PhysiscContainer implements IHitbox {
     public disparo:Boolean=false;
     private hitbox: Graphics;
     public estado:Boolean=true;
+    public estado2:boolean=true;
     constructor() {
         super();
         //animated sprite
@@ -78,7 +79,7 @@ export class Player extends PhysiscContainer implements IHitbox {
 
         //---caja----
         this.hitbox = new Graphics();
-        this.hitbox.beginFill(0xff00ff, 0.2);
+        this.hitbox.beginFill(0xff00ff, 0);
         this.hitbox.drawRect(0, 0, 220, 80);
         this.hitbox.endFill;
         this.hitbox.x = -115;
@@ -87,7 +88,7 @@ export class Player extends PhysiscContainer implements IHitbox {
 
 
         this.addChild(this.navePlayer);
-        //this.addChild(auxZero);
+   
         this.navePlayer.addChild(this.hitbox);
 
         this.acceleration.y = Player.GRAVITY;
@@ -150,6 +151,7 @@ export class Player extends PhysiscContainer implements IHitbox {
 
     private onKeyB(): void {
         this.disparo=true;
+
         this.rayo.play();
        
         this.addChild(this.rayo)
@@ -193,6 +195,7 @@ export class Player extends PhysiscContainer implements IHitbox {
         }
         else {
             this.estado=false;
+            this.estado2=false;
             this.navePlayer.tint = 0xf00000;
             if (this.y > platform.y) 
             {

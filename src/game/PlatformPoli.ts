@@ -30,7 +30,7 @@ export class PlatformPoli extends PhysiscContainer /*Container  nover el pato*/ 
         this.addChild(this.navepoli);
 
         this.hitbox = new Graphics();
-        this.hitbox.beginFill(0x00FFFF, 0.2);
+        this.hitbox.beginFill(0x00FFFF, 0);
         this.hitbox.drawRect(0,0,373,123);
         this.hitbox.endFill();
         this.hitbox.x=-188;

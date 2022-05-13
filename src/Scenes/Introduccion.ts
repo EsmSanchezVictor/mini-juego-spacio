@@ -61,7 +61,7 @@ export class Introduccion extends Container {
 
             ], true
         );
-        //this.animaIntro.play();
+        this.animaIntro.play();
         this.animaIntro.anchor.set(1, 1);
         this.animaIntro.animationSpeed = 0.8;
         this.animaIntro.scale.x = 5;
@@ -83,13 +83,7 @@ export class Introduccion extends Container {
         lokiconfez.y = this.posRelY + 70;
         this.worldI.addChild(lokiconfez);
 
-        //estrellas
-        /*const estrellas: Estrellas = new Estrellas();
-        estrellas.scale.set(0.5);
-        estrellas.x = this.posRelX + 200;
-        estrellas.y = this.posRelY + 70;
-        this.worldI.addChild(estrellas);*/
-
+      
         //panel de nivel
         const nivel: Nivel = new Nivel();
         nivel.scale.set(0.5);

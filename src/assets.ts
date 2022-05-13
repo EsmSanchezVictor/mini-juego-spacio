@@ -64,8 +64,8 @@ export const asseets=[
 
     //monigote
 
-    { url: "./pngegg.png", name: "loki" },
-    { url: "./fez.png", name: "Fez" },
+    { url: "./intro/pngegg.png", name: "loki" },
+    { url: "./intro/fez.png", name: "Fez" },
     
 //paneles
   
