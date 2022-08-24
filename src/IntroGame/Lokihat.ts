@@ -1,21 +1,27 @@
-import { Container, Point, Sprite } from "pixi.js";
+import { Container, /*Point,*/ Sprite } from "pixi.js";
 
 export class Lokihat extends Container{
 
     constructor(){
         super();
-        const loki: Sprite = Sprite.from("loki");
-        const fez: Sprite = Sprite.from("Fez");
+        const poli: Sprite = Sprite.from("poli1");
+        const nave: Sprite = Sprite.from("player1");
         
-        fez.scale.set(0.4,0.4);
-        fez.position.set(100,-90);
+        poli.scale.set(1.5,1.5);
+        poli.position.set(710,-400);
         
-        loki.anchor.set(0);
-            
-        this.addChild(loki); 
-        this.addChild(fez); 
-        fez.toGlobal(new Point()); 
-	fez.parent.toGlobal(fez.position);
+       
+
+        nave.scale.set(5.5,5.5);
+        nave.position.set(-340,-40);
+        nave.angle=-40;
+        
+       // nave.anchor.set(0);
+              this.addChild(nave);     
+        this.addChild(poli); 
+  
+       /* nave.toGlobal(new Point()); 
+	nave.parent.toGlobal(nave.position);*/
 	
     }
 

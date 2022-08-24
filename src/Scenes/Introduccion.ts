@@ -6,8 +6,7 @@ import { Lokihat } from "../IntroGame/Lokihat";  // imagen de loki con sombrero
 //import { Estrellas } from "../IntroGame/Estrellas"; // cantidad de estralla obtenidas
 import { Nivel } from "../IntroGame/Nivel"; // mensaje de estado de nivel
 import { Intro } from "../IntroGame/Intro"; // cantidad de puntos y objetivos obtiendos 
-
-//import { Mandos } from "../IntroGame/Mandos";
+import { Mandos } from "../IntroGame/Mandos"; //  botones de control
 import { HEIGHT, WIDTH } from "..";
 import { Keyboard } from "../utils/Keyboard";
 
@@ -30,15 +29,6 @@ export class Introduccion extends Container {
         super();
         this.worldI = new Container();
 
-        /*this.panelPlane = new NineSlicePlane(
-
-            Texture.from("panelLcd"), 35, 35, 35, 35
-
-        );
-
-        this.worldI.addChild(this.panelPlane);
-        this.panelPlane.width = 500;
-        this.panelPlane.height = 480;*/
         this.posRelX = /*this.panelPlane.position.x =*/ (WIDTH / 3) + 50;
         this.posRelY = /*this.panelPlane.position.y =*/ (HEIGHT / 2) - 200;
 
@@ -69,17 +59,12 @@ export class Introduccion extends Container {
         this.animaIntro.position.x=2000;
         this.animaIntro.position.y=1500;
         this.worldI.addChild(this.animaIntro);
-       /* this.mandos = new Mandos();
-        this.mandos.scale.set(0.3);
-        this.mandos.x = this.posRelX + 45;
-        this.mandos.y = this.posRelY + 355;
-        this.worldI.addChild(this.mandos);*/
-
+       
 
         //Loki con sobrero
         const lokiconfez: Lokihat = new Lokihat();
         lokiconfez.scale.set(0.5);
-        lokiconfez.x = this.posRelX + 10;
+        lokiconfez.x = this.posRelX - 130;
         lokiconfez.y = this.posRelY + 70;
         this.worldI.addChild(lokiconfez);
 
@@ -112,7 +97,7 @@ export class Introduccion extends Container {
 
          const myText: Text= new Text("ESCAPE",{fontSize: 60,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
          
-         myText.position.x=WIDTH/3;
+         myText.position.x=WIDTH/3.8;
          myText.position.y=HEIGHT/5;
          myText.scale.set(1);
  
@@ -120,9 +105,16 @@ export class Introduccion extends Container {
          myText1.position.x=WIDTH/3;
          myText1.position.y=HEIGHT-100;
          myText1.scale.set(1);
- 
+         
+         const mandos: Mandos =new Mandos();
+         mandos.scale.set(0.3);
+         mandos.x=this.posRelX+45;
+         mandos.y=this.posRelY+355;
+         
+         
          this.worldI.addChild(myText);
          this.worldI.addChild(myText1);
+         this.addChild(mandos);
       
 
     }

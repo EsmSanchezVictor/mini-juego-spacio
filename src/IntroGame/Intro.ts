@@ -1,4 +1,4 @@
-import { Container,NineSlicePlane,Point,/*Sprite*/Text,Texture } from "pixi.js";
+import { Container,NineSlicePlane,Point,Text,Texture } from "pixi.js";
 
 export class Intro extends Container{
 private textBlancos: Text;
@@ -14,27 +14,10 @@ private textBlancos: Text;
         contenedor.scale.set(2.5,0.3);
         contenedor.position.x=-200;
         
-       /* const panelBlancos: Sprite = Sprite.from("puntos");
-            panelBlancos.position.set(100,100);
-            panelBlancos.scale.set(1,1);
-
-       const panelMonedas: Sprite = Sprite.from("puntos");
-            panelMonedas.position.set(100,100);
-            panelMonedas.scale.set(1,1);
-
-        const blancos: Sprite = Sprite.from("blancos");
-            blancos.position.set(180,100);
-            blancos.angle=-45;
-            blancos.scale.set(0.5,0.5);
-
-        const monedas: Sprite = Sprite.from("monedas");
-            monedas.position.set(180,120);
-            monedas.scale.set(0.5,0.5);*/
-
-        this.textBlancos= new Text("hello word",{fontSize: 50,fill:0x00e000, fontFamily:"Comic Sans MS"});
-            this.textBlancos.text="NATALIA NATALIA Listo"
+            this.textBlancos= new Text("hello word",{fontSize: 100,fill:0x00e000, fontFamily:"Comic Sans MS"});
+            this.textBlancos.text="Piloto Listo"
             this.textBlancos.scale.set(1);
-            this.textBlancos.position.set(120,50);
+            this.textBlancos.position.set(250,30);
 
             // evento de teclado
            // document.addEventListener("keydown", this.onKeyDown.bind(this));

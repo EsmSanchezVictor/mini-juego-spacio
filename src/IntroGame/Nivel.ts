@@ -5,12 +5,12 @@ export class Nivel extends Container{
     constructor(){
         super();
         const nivel: Sprite = Sprite.from("completoNivel");
-        const myText: Text= new Text("LOKI CON FEZ INC.",{fontSize: 40,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
+        const myText: Text= new Text("E.S.M. Apoyo y movimiento",{fontSize: 50,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
         
        
         myText.scale.set(1);
-        myText.position.set(130,100);
-          
+        myText.position.set(90,100);
+        nivel.scale.set(1.35,1);
         nivel.anchor.set(0);
             
         this.addChild(nivel);
