@@ -95,9 +95,9 @@ export class Introduccion extends Container {
         }
         //text
 
-         const myText: Text= new Text("ESCAPE",{fontSize: 60,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
+         const myText: Text= new Text("ESCAPE",{fontSize: 80,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
          
-         myText.position.x=WIDTH/3.8;
+         myText.position.x=WIDTH/4.5;
          myText.position.y=HEIGHT/5;
          myText.scale.set(1);
  

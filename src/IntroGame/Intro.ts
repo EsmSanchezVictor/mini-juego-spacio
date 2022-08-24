@@ -9,7 +9,7 @@ private textBlancos: Text;
         const contenedor = new NineSlicePlane(
 
             Texture.from("contenedor"),35,35,35,35
-
+ 
         );
         contenedor.scale.set(2.5,0.3);
         contenedor.position.x=-200;
