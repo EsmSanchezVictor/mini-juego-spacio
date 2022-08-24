@@ -8,7 +8,7 @@ import { Player } from "../game/Player";
 import { IUpdateable } from "../utils/IUpdateable";
 import { Vitalidad } from "../game/Vitalidad";
 import { Puntos } from "./Puntos";
-import { Explosion } from "../game/explosion";
+import { Explosion } from "../game/Explosion";
 
 
 

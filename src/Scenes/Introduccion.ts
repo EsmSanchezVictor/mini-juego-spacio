@@ -110,9 +110,9 @@ export class Introduccion extends Container {
         }
         //text
 
-         const myText: Text= new Text("NATALIA NATALIA EN EL ESPACIO",{fontSize: 60,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
+         const myText: Text= new Text("ESCAPE",{fontSize: 60,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
          
-         myText.position.x=WIDTH/4;
+         myText.position.x=WIDTH/3;
          myText.position.y=HEIGHT/5;
          myText.scale.set(1);
  
