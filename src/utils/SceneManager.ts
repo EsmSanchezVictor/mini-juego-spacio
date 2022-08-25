@@ -73,5 +73,16 @@ export namespace SceneManager
      
 
     }
+
+    
+    export function addScene(newScene:SceneBase){
+        
+        app.stage.addChild(newScene);
+        
+    }
+
+    export function getCurrentScene():SceneBase{
+        return currentScene;
+    }
     
 }

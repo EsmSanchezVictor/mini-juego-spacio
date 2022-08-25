@@ -1,6 +1,6 @@
 
 
-import { Container, Texture,Text,AnimatedSprite} from "pixi.js";
+import {  Texture,Text,AnimatedSprite} from "pixi.js";
 import { Lokihat } from "../IntroGame/Lokihat";  // imagen de loki con sombrero 
 //import { sound } from "@pixi/sound";
 import { Nivel } from "../IntroGame/Nivel"; // mensaje de estado de nivel
@@ -24,7 +24,7 @@ export class Introduccion extends SceneBase {
     public valor = true;
     public valor2= false;
     private adelante: Button;
-   // private atras: Button;
+    // private atras: Button;
     /*private repetir: Button;
     private home: Button;*/
     
@@ -32,10 +32,9 @@ export class Introduccion extends SceneBase {
 
 
     
-    public worldI: Container;
+   
     constructor() {
         super();
-        this.worldI = new Container();
         this.posRelX = /*this.panelPlane.position.x =*/ (SceneManager.WIDTH / 3) + 50;
         this.posRelY = /*this.panelPlane.position.y =*/ (SceneManager.HEIGHT / 2) - 200;
         this.animaIntro = new AnimatedSprite(
@@ -64,7 +63,7 @@ export class Introduccion extends SceneBase {
         this.animaIntro.scale.y = 5;
         this.animaIntro.position.x=2000;
         this.animaIntro.position.y=1500;
-        this.worldI.addChild(this.animaIntro);
+        this.addChild(this.animaIntro);
        
 
         //Loki con sobrero
@@ -72,7 +71,7 @@ export class Introduccion extends SceneBase {
         lokiconfez.scale.set(0.5);
         lokiconfez.x = this.posRelX - 130;
         lokiconfez.y = this.posRelY + 70;
-        this.worldI.addChild(lokiconfez);
+        this.addChild(lokiconfez);
 
       
         //panel de nivel
@@ -80,16 +79,16 @@ export class Introduccion extends SceneBase {
         nivel.scale.set(0.5);
         nivel.x = this.posRelX + 150;
         nivel.y = this.posRelY + 150;
-        this.worldI.addChild(nivel);
+        this.addChild(nivel);
 
         //panel de puntos
         const introd: Intro = new Intro();
         introd.scale.set(0.5);
         introd.x = this.posRelX - 5;
         introd.y = this.posRelY + 250;
-        this.worldI.addChild(introd);
+        this.addChild(introd);
        
-        this.addChild(this.worldI)
+        
 
         if (this.valor) {
 
@@ -121,9 +120,9 @@ export class Introduccion extends SceneBase {
      
 
 
-         this.worldI.addChild(this.adelante);
-         this.worldI.addChild(myText);
-         this.worldI.addChild(myText1);
+         this.addChild(this.adelante);
+         this.addChild(myText);
+         this.addChild(myText1);
          //this.worldI.addChild(mandos);
         
 
@@ -131,7 +130,13 @@ export class Introduccion extends SceneBase {
          
     }
     clickAdelante():void {
+   
+        //this.removeChild(this.worldI);
         SceneManager.changeScene(new PrimeraVista());
+        this.destroy();
+        console.log("estoy aca");
+       
+        
     }
 
  
