@@ -1,7 +1,7 @@
 import { Container, Texture, TilingSprite } from "pixi.js";
 
 import { checkCollision } from "../game/IHitbox";
-import { Introduccion } from "./Introduccion";
+//import { Introduccion } from "./Introduccion";
 import { Platform } from "../game/Platform";
 import { PlatformPoli } from "../game/PlatformPoli";
 import { Player } from "../game/Player";
@@ -42,7 +42,7 @@ export class PrimeraVista extends SceneBase implements IUpdateable {
     constructor() {
 
         super();
-        const intro = new Introduccion;
+        //const intro = new Introduccion;
         this.puntos = new Puntos(this.cantidadPuntos);
         this.vital = new Vitalidad();
         this.platforms = [];
@@ -103,7 +103,7 @@ export class PrimeraVista extends SceneBase implements IUpdateable {
         
         this.addChild(this.world);
        
-        this.addChild(intro);
+        //this.addChild(intro);
     }
 
 

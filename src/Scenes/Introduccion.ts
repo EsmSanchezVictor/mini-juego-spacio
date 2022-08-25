@@ -1,11 +1,11 @@
 
 
-import {  Texture,Text,AnimatedSprite} from "pixi.js";
+import { Texture,Text,AnimatedSprite} from "pixi.js";
 import { Lokihat } from "../IntroGame/Lokihat";  // imagen de loki con sombrero 
 //import { sound } from "@pixi/sound";
 import { Nivel } from "../IntroGame/Nivel"; // mensaje de estado de nivel
 import { Intro } from "../IntroGame/Intro"; // cantidad de puntos y objetivos obtiendos 
-import { Keyboard } from "../utils/Keyboard";
+//import { Keyboard } from "../utils/Keyboard";
 import { SceneManager } from "../utils/SceneManager";
 import { SceneBase } from "../utils/SceneBase";
 import { Button } from "../ui/Button";
@@ -90,11 +90,11 @@ export class Introduccion extends SceneBase {
        
         
 
-        if (this.valor) {
+        /*if (this.valor) {
 
             Keyboard.down.on("KeyB", this.onKeyB, this);
             Keyboard.up.on("KeyB", this.onKeyBup, this);
-        }
+        }*/
         //text
 
          const myText: Text= new Text("ESCAPE",{fontSize: 80,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
@@ -117,30 +117,22 @@ export class Introduccion extends SceneBase {
          this.adelante.interactive= true;
          this.adelante.buttonMode= true;
 
-     
-
-
          this.addChild(this.adelante);
          this.addChild(myText);
          this.addChild(myText1);
-         //this.worldI.addChild(mandos);
-        
-
 
          
     }
-    clickAdelante():void {
+    private clickAdelante():void {
    
-        //this.removeChild(this.worldI);
         SceneManager.changeScene(new PrimeraVista());
-        this.destroy();
         console.log("estoy aca");
        
         
     }
 
  
-    private onKeyB(): void {
+    /*private onKeyB(): void {
         this.valor = false;
 
 
@@ -150,7 +142,7 @@ export class Introduccion extends SceneBase {
 
         
         if (this.valor == false && this.valor2 == false) {
-            SceneManager.changeScene(new Introduccion());
+            SceneManager.changeScene(new PrimeraVista());
         } else {
             this.valor = false;
             this.valor2 = true;
@@ -160,7 +152,7 @@ export class Introduccion extends SceneBase {
 
 
 
-    }
+    }*/
     public update(): void {
     }
 }
