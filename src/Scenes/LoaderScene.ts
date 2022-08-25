@@ -1,4 +1,4 @@
-import { WebfontLoaderPlugin } from "pixi-webfont-loader";
+//import { WebfontLoaderPlugin } from "pixi-webfont-loader";
 import { BitmapFont, Graphics, Loader, TextStyle } from "pixi.js";
 
 import { asseets } from "../assets";
@@ -43,7 +43,7 @@ export class LoaderScene extends SceneBase{
     }
 
     private downloadAsset(){
-        Loader.registerPlugin(WebfontLoaderPlugin);
+       // Loader.registerPlugin(WebfontLoaderPlugin);
         Loader.shared.add(asseets);
         Loader.shared.onProgress.add((Loader)=>this.setBarPercent(Loader.progress));
         Loader.shared.onComplete.once(this.whenLoadFinished.bind(this))
