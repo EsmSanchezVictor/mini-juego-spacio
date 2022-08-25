@@ -1,7 +1,7 @@
 import { Application, Ticker } from "pixi.js";
 import { Keyboard } from "./Keyboard";
 import { SceneBase } from "./SceneBase";
-//import { Group } from "tweedle.js"
+import { Group } from "tweedle.js"
 
 
 export namespace SceneManager
@@ -56,7 +56,7 @@ export namespace SceneManager
         Ticker.shared.add(update);
     }
     function update(framePassed:number){
-       // Group.shared.update();
+      Group.shared.update();
         currentScene?.update(Ticker.shared.elapsedMS, framePassed);
     }
 
