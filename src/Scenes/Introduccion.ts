@@ -25,9 +25,8 @@ export class Introduccion extends SceneBase {
     public valor = true;
     public valor2= false;
     private adelante: Button;
-    // private atras: Button;
-    /*private repetir: Button;
-    private home: Button;*/
+    private configura:Button;
+ 
     
     private animaIntro:AnimatedSprite;
 
@@ -91,14 +90,10 @@ export class Introduccion extends SceneBase {
        
         
 
-        /*if (this.valor) {
-
-            Keyboard.down.on("KeyB", this.onKeyB, this);
-            Keyboard.up.on("KeyB", this.onKeyBup, this);
-        }*/
+       
         //text
 
-         const myText: Text= new Text("ESCAPE",{fontSize: 80,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
+         const myText: Text= new Text("ESCAPE",{fontSize: 75,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
          
          myText.position.x=SceneManager.WIDTH/4.5;
          myText.position.y=SceneManager.HEIGHT/5;
@@ -112,24 +107,34 @@ export class Introduccion extends SceneBase {
          this.adelante= new Button(Texture.from("adelante"),"Right");
          this.adelante.on("buttonClick", this.clickAdelante,this)
       
-         this.adelante.x=this.posRelX+45;
+         this.adelante.x=this.posRelX+95;
          this.adelante.y=this.posRelY+355;
          this.adelante.scale.set(0.1);
          this.adelante.interactive= true;
          this.adelante.buttonMode= true;
 
 
+         this.configura= new Button(Texture.from("config"),"Config");
+         this.configura.on("buttonClick", this.Config,this)
+      
+         this.configura.x=this.posRelX+355;
+         this.configura.y=this.posRelY+355;
+         this.configura.scale.set(0.1);
+         this.configura.interactive= true;
+         this.configura.buttonMode= true;
+
+
         sound.find("Lance");
         
         const toggleMute = new ToggleButton(Texture.from("MusicOn"), Texture.from("MusicOff"));
-        toggleMute.x=this.posRelX+175;
+        toggleMute.x=this.posRelX+225;
         toggleMute.y=this.posRelY+355; 
         toggleMute.scale.set(0.1);
         toggleMute.on(ToggleButton.TOGGLE_EVENT, this.toggleMute, this);
 
          this.addChild(toggleMute);
          this.addChild(this.adelante);
-         
+         this.addChild(this.configura);
          this.addChild(myText);
          this.addChild(myText1);
          
@@ -144,29 +149,12 @@ export class Introduccion extends SceneBase {
         
     }
 
- 
-    /*private onKeyB(): void {
-        this.valor = false;
-
-
-    }
-
-    private onKeyBup(): void {
-
+    private Config():void {
+       /* let menuConfig = new MenuConfig();
+        menuConfig.position.set(SceneManager.WIDTH * 1/3, SceneManager.HEIGHT * 1/7);
+        this.addChild(menuConfig);*/
         
-        if (this.valor == false && this.valor2 == false) {
-            SceneManager.changeScene(new PrimeraVista());
-        } else {
-            this.valor = false;
-            this.valor2 = true;
-        }
-
-
-
-
-
-    }*/
-
+    }
 
     public toggleMute(unMute:boolean) {
         if (unMute) 
