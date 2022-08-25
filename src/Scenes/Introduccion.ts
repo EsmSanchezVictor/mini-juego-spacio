@@ -1,37 +1,43 @@
 
 
-import { Container, Texture,/* NineSlicePlane,*/ Text, 
-AnimatedSprite} from "pixi.js";
+import { Container, Texture,Text,AnimatedSprite} from "pixi.js";
 import { Lokihat } from "../IntroGame/Lokihat";  // imagen de loki con sombrero 
-//import { Estrellas } from "../IntroGame/Estrellas"; // cantidad de estralla obtenidas
+//import { sound } from "@pixi/sound";
 import { Nivel } from "../IntroGame/Nivel"; // mensaje de estado de nivel
 import { Intro } from "../IntroGame/Intro"; // cantidad de puntos y objetivos obtiendos 
-import { Mandos } from "../IntroGame/Mandos"; //  botones de control
-import { HEIGHT, WIDTH } from "..";
 import { Keyboard } from "../utils/Keyboard";
+import { SceneManager } from "../utils/SceneManager";
+import { SceneBase } from "../utils/SceneBase";
+import { Button } from "../ui/Button";
+import { PrimeraVista } from "./PrimeraVista";
 
 
 
 
-//
 
-export class Introduccion extends Container {
+
+
+export class Introduccion extends SceneBase {
+   
     public posRelX: number;
     public posRelY: number;
-  //  private panelPlane: NineSlicePlane;
     public valor = true;
     public valor2= false;
-   // private mandos: Mandos;
+    private adelante: Button;
+   // private atras: Button;
+    /*private repetir: Button;
+    private home: Button;*/
+    
     private animaIntro:AnimatedSprite;
+
+
     
     public worldI: Container;
     constructor() {
         super();
         this.worldI = new Container();
-
-        this.posRelX = /*this.panelPlane.position.x =*/ (WIDTH / 3) + 50;
-        this.posRelY = /*this.panelPlane.position.y =*/ (HEIGHT / 2) - 200;
-
+        this.posRelX = /*this.panelPlane.position.x =*/ (SceneManager.WIDTH / 3) + 50;
+        this.posRelY = /*this.panelPlane.position.y =*/ (SceneManager.HEIGHT / 2) - 200;
         this.animaIntro = new AnimatedSprite(
             [
 
@@ -83,9 +89,6 @@ export class Introduccion extends Container {
         introd.y = this.posRelY + 250;
         this.worldI.addChild(introd);
        
-
-    
-
         this.addChild(this.worldI)
 
         if (this.valor) {
@@ -97,27 +100,41 @@ export class Introduccion extends Container {
 
          const myText: Text= new Text("ESCAPE",{fontSize: 80,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
          
-         myText.position.x=WIDTH/4.5;
-         myText.position.y=HEIGHT/5;
+         myText.position.x=SceneManager.WIDTH/4.5;
+         myText.position.y=SceneManager.HEIGHT/5;
          myText.scale.set(1);
  
          const myText1: Text= new Text("Pulsa la tecla B para iniciar",{fontSize: 50,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
-         myText1.position.x=WIDTH/3;
-         myText1.position.y=HEIGHT-100;
+         myText1.position.x=SceneManager.WIDTH/3;
+         myText1.position.y=SceneManager.HEIGHT-100;
          myText1.scale.set(1);
          
-         const mandos: Mandos =new Mandos();
-         mandos.scale.set(0.3);
-         mandos.x=this.posRelX+45;
-         mandos.y=this.posRelY+355;
-         
-         
+         this.adelante= new Button(Texture.from("adelante"),"Right");
+         this.adelante.on("buttonClick", this.clickAdelante,this)
+      
+         this.adelante.x=this.posRelX+45;
+         this.adelante.y=this.posRelY+355;
+         this.adelante.scale.set(0.3);
+         this.adelante.interactive= true;
+         this.adelante.buttonMode= true;
+
+     
+
+
+         this.worldI.addChild(this.adelante);
          this.worldI.addChild(myText);
          this.worldI.addChild(myText1);
-         this.addChild(mandos);
-      
+         //this.worldI.addChild(mandos);
+        
 
+
+         
     }
+    clickAdelante():void {
+        SceneManager.changeScene(new PrimeraVista());
+    }
+
+ 
     private onKeyB(): void {
         this.valor = false;
 
@@ -128,9 +145,7 @@ export class Introduccion extends Container {
 
         
         if (this.valor == false && this.valor2 == false) {
-            this.removeChild(this.worldI);
-            this.worldI.destroy();
-          
+            SceneManager.changeScene(new Introduccion());
         } else {
             this.valor = false;
             this.valor2 = true;
@@ -140,5 +155,7 @@ export class Introduccion extends Container {
 
 
 
+    }
+    public update(): void {
     }
 }

@@ -6,7 +6,7 @@ import { Nivel } from "../IntroGame/Nivel"; // mensaje de estado de nivel
 import { Intro } from "../IntroGame/Intro"; // cantidad de puntos y objetivos obtiendos 
 
 
-import { HEIGHT, WIDTH } from "..";
+import { SceneManager } from "../utils/SceneManager";
 
 
 
@@ -27,8 +27,8 @@ export class Puntos extends Container {
     constructor(puntos:number) {
         super();
         this.worldI = new Container();
-        this.posRelX = /*this.panelPlane.position.x =*/ (WIDTH / 3) + 50;
-        this.posRelY = /*this.panelPlane.position.y =*/ (HEIGHT / 2) - 200;
+        this.posRelX = /*this.panelPlane.position.x =*/ (SceneManager.WIDTH / 3) + 50;
+        this.posRelY = /*this.panelPlane.position.y =*/ (SceneManager.HEIGHT / 2) - 200;
 
         /*this.animaIntro = new AnimatedSprite(
             [
@@ -96,13 +96,13 @@ export class Puntos extends Container {
 
          const myText: Text= new Text("OBTUVISTE: "+ puntos,{fontSize: 60,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
          
-         myText.position.x=WIDTH/3+30;
-         myText.position.y=HEIGHT/5;
+         myText.position.x=SceneManager.WIDTH/3+30;
+         myText.position.y=SceneManager.HEIGHT/5;
          myText.scale.set(1);
  
          const myText1: Text= new Text("Pulsa la tecla f5 para reiniciar",{fontSize: 50,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
-         myText1.position.x=WIDTH/3;
-         myText1.position.y=HEIGHT-300;
+         myText1.position.x=SceneManager.WIDTH/3;
+         myText1.position.y=SceneManager.HEIGHT-300;
          myText1.scale.set(1);
  
          this.worldI.addChild(myText);

@@ -1,5 +1,5 @@
 import { Container, Texture, TilingSprite } from "pixi.js";
-import { HEIGHT, WIDTH } from "..";
+
 import { checkCollision } from "../game/IHitbox";
 import { Introduccion } from "./Introduccion";
 import { Platform } from "../game/Platform";
@@ -9,13 +9,15 @@ import { IUpdateable } from "../utils/IUpdateable";
 import { Vitalidad } from "../game/Vitalidad";
 import { Puntos } from "./Puntos";
 import { Explosion } from "../game/Explosion";
+import { SceneBase } from "../utils/SceneBase";
+import { SceneManager } from "../utils/SceneManager";
 
 
 
 
 
 
-export class PrimeraVista extends Container implements IUpdateable {
+export class PrimeraVista extends SceneBase implements IUpdateable {
     private explosion:Explosion;
     private playerNave: Player;
     private vital: Vitalidad;
@@ -52,7 +54,7 @@ export class PrimeraVista extends Container implements IUpdateable {
 
         //this.removeChild(intro.worldI);
 
-         this.background = new TilingSprite(Texture.from("Background"), WIDTH, HEIGHT);
+         this.background = new TilingSprite(Texture.from("Background"),SceneManager.WIDTH, SceneManager.HEIGHT);
          this.addChild(this.background); //al final para que no se frene
 
 
@@ -114,14 +116,14 @@ export class PrimeraVista extends Container implements IUpdateable {
             this.gameSpeed += 5;
             this.timePassed = 0;
             const plat = new Platform()
-            plat.position.set(WIDTH, Math.random() * 800);
+            plat.position.set(SceneManager.WIDTH, Math.random() * 800);
             this.world.addChild(plat);
             this.platforms.push(plat);
         }
         if (this.timePassed2 > (5000 * 200 / this.gameSpeed)) {
             this.timePassed2 = 0;
             const platPoli = new PlatformPoli()
-            platPoli.position.set(WIDTH, Math.random() * 800);
+            platPoli.position.set(SceneManager.WIDTH, Math.random() * 800);
             this.world.addChild(platPoli);
             this.platformPoli.push(platPoli);
         }
@@ -233,17 +235,17 @@ export class PrimeraVista extends Container implements IUpdateable {
        
         this.platforms = this.platforms.filter((elem) => !elem.destroyed);
         this.platformPoli = this.platformPoli.filter((elem) => !elem.destroyed);
-        this.world.x = -this.playerNave.x * this.worldTransform.a + WIDTH / 4;
+        this.world.x = -this.playerNave.x * this.worldTransform.a + SceneManager.WIDTH / 4;
        this.background.tilePosition.x -= this.gameSpeed * deltaTime/1000* this.world.x * 0.1; //al final para que no se frene
 
-        if (this.playerNave.x > WIDTH) {
-            this.playerNave.x = WIDTH - 430;
+        if (this.playerNave.x > SceneManager.WIDTH) {
+            this.playerNave.x = SceneManager.WIDTH - 430;
         } else if (this.playerNave.x < 0) {
             this.playerNave.x = 430;
         }
 
-        if (this.playerNave.y > HEIGHT - 90) {
-            this.playerNave.y = HEIGHT - 90;
+        if (this.playerNave.y > SceneManager.HEIGHT - 90) {
+            this.playerNave.y = SceneManager.HEIGHT - 90;
             this.playerNave.exploto = true;
         }//para perder al caer del mundo
     }else{
