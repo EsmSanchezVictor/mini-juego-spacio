@@ -1,7 +1,6 @@
 import { Container, Texture, TilingSprite } from "pixi.js";
 
 import { checkCollision } from "../game/IHitbox";
-//import { Introduccion } from "./Introduccion";
 import { Platform } from "../game/Platform";
 import { PlatformPoli } from "../game/PlatformPoli";
 import { Player } from "../game/Player";

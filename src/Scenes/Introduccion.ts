@@ -122,14 +122,17 @@ export class Introduccion extends SceneBase {
         sound.find("Lance");
         
         const toggleMute = new ToggleButton(Texture.from("MusicOn"), Texture.from("MusicOff"));
-        toggleMute.position.set(this.posRelX+175,this.posRelY+355 );
+        toggleMute.x=this.posRelX+175;
+        toggleMute.y=this.posRelY+355; 
         toggleMute.scale.set(0.1);
         toggleMute.on(ToggleButton.TOGGLE_EVENT, this.toggleMute, this);
 
-
+         this.addChild(toggleMute);
          this.addChild(this.adelante);
+         
          this.addChild(myText);
          this.addChild(myText1);
+         
          this.soundrack();
          
     }
