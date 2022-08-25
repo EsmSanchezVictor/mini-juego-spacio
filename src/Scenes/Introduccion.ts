@@ -2,7 +2,7 @@
 
 import { Texture,Text,AnimatedSprite} from "pixi.js";
 import { Lokihat } from "../IntroGame/Lokihat";  // imagen de loki con sombrero 
-//import { sound } from "@pixi/sound";
+import { sound } from "@pixi/sound";
 import { Nivel } from "../IntroGame/Nivel"; // mensaje de estado de nivel
 import { Intro } from "../IntroGame/Intro"; // cantidad de puntos y objetivos obtiendos 
 //import { Keyboard } from "../utils/Keyboard";
@@ -10,6 +10,7 @@ import { SceneManager } from "../utils/SceneManager";
 import { SceneBase } from "../utils/SceneBase";
 import { Button } from "../ui/Button";
 import { PrimeraVista } from "./PrimeraVista";
+import { ToggleButton } from "../ui/ToggleButton";
 
 
 
@@ -113,14 +114,23 @@ export class Introduccion extends SceneBase {
       
          this.adelante.x=this.posRelX+45;
          this.adelante.y=this.posRelY+355;
-         this.adelante.scale.set(0.3);
+         this.adelante.scale.set(0.1);
          this.adelante.interactive= true;
          this.adelante.buttonMode= true;
+
+
+        sound.find("Lance");
+        
+        const toggleMute = new ToggleButton(Texture.from("MusicOn"), Texture.from("MusicOff"));
+        toggleMute.position.set(this.posRelX+175,this.posRelY+355 );
+        toggleMute.scale.set(0.1);
+        toggleMute.on(ToggleButton.TOGGLE_EVENT, this.toggleMute, this);
+
 
          this.addChild(this.adelante);
          this.addChild(myText);
          this.addChild(myText1);
-
+         this.soundrack();
          
     }
     private clickAdelante():void {
@@ -153,6 +163,25 @@ export class Introduccion extends SceneBase {
 
 
     }*/
+
+
+    public toggleMute(unMute:boolean) {
+        if (unMute) 
+        {
+            sound.unmuteAll();
+        }else
+        {
+            sound.muteAll();
+        }
+    }
+
+    public soundrack(){
+        sound.play("Lance", {
+            loop:true,
+            singleInstance:true,
+            });
+    }
+
     public update(): void {
     }
 }

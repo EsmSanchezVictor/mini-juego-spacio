@@ -88,6 +88,9 @@ export const asseets=[
     { url: "./iconos/monedas.png", name: "monedas" },
     { url: "./iconos/repetir.png", name: "repetir" },
     { url: "./iconos/home.png", name: "home" },
+    { url: "./iconos/MusicOn.png", name: "MusicOn" },
+    { url: "./iconos/MusicOff.png", name: "MusicOff" },
+    { url: "./iconos/config.png", name: "config" },
 
 //fondo in out
 
@@ -109,4 +112,7 @@ export const asseets=[
 { url: "./rayo/rayo1.png", name: "rayo1" },
 { url: "./rayo/rayo2.png", name: "rayo2" },
 { url: "./rayo/rayo3.png", name: "rayo3" },
+
+
+{url: "./sounds/Lance.mp3", name: "Lance"},
 ];
