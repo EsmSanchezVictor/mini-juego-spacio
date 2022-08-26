@@ -115,4 +115,7 @@ export const asseets=[
 
 
 {url: "./sounds/Lance.mp3", name: "Lance"},
+{url: "./sounds/choque.mp3", name: "choque"},
+{url: "./sounds/explota.mp3", name: "explota"},
+{url: "./sounds/laser.mp3", name: "laser"},
 ];

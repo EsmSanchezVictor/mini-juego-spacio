@@ -6,10 +6,11 @@ import { PlatformPoli } from "../game/PlatformPoli";
 import { Player } from "../game/Player";
 import { IUpdateable } from "../utils/IUpdateable";
 import { Vitalidad } from "../game/Vitalidad";
-import { Puntos } from "./Puntos";
 import { Explosion } from "../game/Explosion";
 import { SceneBase } from "../utils/SceneBase";
 import { SceneManager } from "../utils/SceneManager";
+import { sound } from "@pixi/sound";
+import { Explota } from "./Explota";
 
 
 
@@ -25,7 +26,7 @@ export class PrimeraVista extends SceneBase implements IUpdateable {
     private cantidadVida: number = 100;
     private cantidadPuntos: number = 0;
     public world: Container;
-    public puntos: Puntos;
+    //public puntos: Puntos;
     
 
     private background: TilingSprite;//al final para que no se frene
@@ -42,7 +43,7 @@ export class PrimeraVista extends SceneBase implements IUpdateable {
 
         super();
         //const intro = new Introduccion;
-        this.puntos = new Puntos(this.cantidadPuntos);
+        //this.puntos = new Puntos(this.cantidadPuntos);
         this.vital = new Vitalidad();
         this.platforms = [];
         this.platformPoli = [];
@@ -101,7 +102,7 @@ export class PrimeraVista extends SceneBase implements IUpdateable {
         this.addChild(this.vital);
         
         this.addChild(this.world);
-       
+        this.soundrack();
         //this.addChild(intro);
     }
 
@@ -145,15 +146,18 @@ export class PrimeraVista extends SceneBase implements IUpdateable {
                     this.cantidadVida -= 2;
                     this.vital.textBlancos.text = "Vitalidad | " + this.cantidadVida + "%";
                     this.playerNave.estado = false;
+                    //-----
+                    sound.find("choque");
+                    this.sonidoChoque();
                    
                 }
                 if (this.playerNave.disparo==true ){
                     this.explosion.x=platform.x;
                     this.explosion.y=platform.y;
                     this.world.removeChild(platform);
-
                     this.world.addChild(this.explosion);
-                  
+                    sound.find("explota");
+                    this.sonidoExplota();
                    
                     this.playerNave.estado=true;
                 
@@ -199,12 +203,16 @@ export class PrimeraVista extends SceneBase implements IUpdateable {
                     this.cantidadVida -= 2;
                     this.vital.textBlancos.text = "Vitalidad | " + this.cantidadVida + "%";
                     this.playerNave.estado2 = false;
+                    sound.find("choque");
+                    this.sonidoChoque();
                 }
                 if (this.playerNave.disparo==true ){
                     this.explosion.x=platformPoli.x;
                     this.explosion.y=platformPoli.y;
                     this.world.removeChild(platformPoli);
                     this.world.addChild(this.explosion);
+                    sound.find("explota");
+                    this.sonidoExplota();
                   
                   
                   this.playerNave.estado2=true;
@@ -248,26 +256,34 @@ export class PrimeraVista extends SceneBase implements IUpdateable {
             this.playerNave.exploto = true;
         }//para perder al caer del mundo
     }else{
-        const puntosS =new Puntos(this.cantidadPuntos);
-        this.world.removeChild(this.playerNave);
-        this.removeChild(this.world);
-       // this.world.destroy();
-       
-       this.addChild(puntosS)
-  
-        //this.removeChild(this.world);
       
+        SceneManager.changeScene(new Explota(this.cantidadPuntos));
+    }
 
-       
-       
+    }
+    sonidoChoque()
+    {
+        sound.play("choque", {
+            loop:false,
+            singleInstance:true,
+            });        
+    }
+    soundrack(){
+        sound.play("Lance", {
+            loop:true,
+            singleInstance:true,
+            volume:0.2,
+           
+            });
         
-       
-  
     }
-
+    sonidoExplota()
+    {
+        sound.play("explota", {
+            loop:false,
+            singleInstance:true,
+            });        
     }
-
-
 
 
 

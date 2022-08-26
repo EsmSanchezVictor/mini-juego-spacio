@@ -99,10 +99,7 @@ export class Introduccion extends SceneBase {
          myText.position.y=SceneManager.HEIGHT/5;
          myText.scale.set(1);
  
-         const myText1: Text= new Text("Pulsa la tecla B para iniciar",{fontSize: 50,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
-         myText1.position.x=SceneManager.WIDTH/3;
-         myText1.position.y=SceneManager.HEIGHT-100;
-         myText1.scale.set(1);
+   
          
          this.adelante= new Button(Texture.from("adelante"),"Right");
          this.adelante.on("buttonClick", this.clickAdelante,this)
@@ -136,7 +133,7 @@ export class Introduccion extends SceneBase {
          this.addChild(this.adelante);
          this.addChild(this.configura);
          this.addChild(myText);
-         this.addChild(myText1);
+       
          
          this.soundrack();
          
@@ -145,6 +142,7 @@ export class Introduccion extends SceneBase {
    
         SceneManager.changeScene(new PrimeraVista());
         console.log("estoy aca");
+        sound.pause;
        
         
     }

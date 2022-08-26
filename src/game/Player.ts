@@ -1,3 +1,4 @@
+import { sound } from "@pixi/sound";
 import { AnimatedSprite, Graphics, ObservablePoint, Rectangle, Texture } from "pixi.js";
 import { Keyboard } from "../utils/Keyboard";
 import { IHitbox } from "./IHitbox";
@@ -153,11 +154,12 @@ export class Player extends PhysiscContainer implements IHitbox {
         this.disparo=true;
 
         this.rayo.play();
+        sound.find("laser");
+        this.sonidoLaser();
        
         this.addChild(this.rayo)
         this.addChild(this.rayo2)
         this.hitbox.scale.x=1.6;
-    
         
        
         
@@ -207,4 +209,16 @@ export class Player extends PhysiscContainer implements IHitbox {
             }
         }
     }
+    sonidoLaser()
+    {
+        sound.play("laser", {
+            loop:false,
+            singleInstance:false,
+            
+            
+            });
+            
+            
+    }
+  
 }
