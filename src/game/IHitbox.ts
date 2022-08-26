@@ -1,3 +1,4 @@
+
 import { Rectangle } from "pixi.js";
 
 export interface IHitbox {
@@ -5,9 +6,7 @@ export interface IHitbox {
 }
 
 export function checkCollision(objA:IHitbox, objB:IHitbox):Rectangle | null 
-
 {
-    
     const rA = objA.getHitbox();
     const rB = objB.getHitbox();
 
@@ -22,10 +21,10 @@ export function checkCollision(objA:IHitbox, objB:IHitbox):Rectangle | null
     if (makesSenseHorizontal && makesSenseVertical)
     {
         const retval = new Rectangle();
-        retval.x = rightmostLeft;
-        retval.y = bottommostTop;
-        retval.width = leftmostRight - rightmostLeft;
-        retval.height = topmostBottom - bottommostTop;
+        retval.x = rightmostLeft+600;
+        retval.y = bottommostTop-600;
+        retval.width = leftmostRight - rightmostLeft+600;
+        retval.height = topmostBottom - bottommostTop+600;
         return retval;
     }
     else

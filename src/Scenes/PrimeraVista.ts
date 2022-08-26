@@ -149,18 +149,20 @@ export class PrimeraVista extends SceneBase implements IUpdateable {
                     //-----
                     sound.find("choque");
                     this.sonidoChoque();
+             
                    
                 }
                 if (this.playerNave.disparo==true ){
                     this.explosion.x=platform.x;
                     this.explosion.y=platform.y;
                     this.world.removeChild(platform);
+                    
                     this.world.addChild(this.explosion);
                     sound.find("explota");
                     this.sonidoExplota();
-                   
+                    platform.destroy();
                     this.playerNave.estado=true;
-                
+                    
                    
                 }
                 this.deltaT+= deltaTime;
@@ -200,11 +202,16 @@ export class PrimeraVista extends SceneBase implements IUpdateable {
                 
                 
                 if (this.playerNave.estado2 == true  &&  this.playerNave.disparo==false) {
-                    this.cantidadVida -= 2;
+                    this.cantidadVida -= 5;
                     this.vital.textBlancos.text = "Vitalidad | " + this.cantidadVida + "%";
                     this.playerNave.estado2 = false;
-                    sound.find("choque");
-                    this.sonidoChoque();
+                    this.world.addChild(this.explosion);
+                    sound.find("explota");
+                    this.sonidoExplota();
+                    platformPoli.destroy();
+                    
+                  
+                   
                 }
                 if (this.playerNave.disparo==true ){
                     this.explosion.x=platformPoli.x;
@@ -213,7 +220,8 @@ export class PrimeraVista extends SceneBase implements IUpdateable {
                     this.world.addChild(this.explosion);
                     sound.find("explota");
                     this.sonidoExplota();
-                  
+                    platformPoli.destroy();
+                    
                   
                   this.playerNave.estado2=true;
                   
