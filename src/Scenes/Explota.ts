@@ -4,11 +4,13 @@ import { AnimatedSprite, Text, Texture} from "pixi.js";
 import { Keyboard } from "../utils/Keyboard";
 import { Introduccion } from "./Introduccion";
 import { Puntos } from "./Puntos";
+import { Explosion } from "../game/Explosion";
 
 export class Explota extends SceneBase
 {
     private animaIntro:AnimatedSprite;
-    private explosion:AnimatedSprite;
+   // private explosion:AnimatedSprite;
+   private explosion:Explosion;
     private Puntos:number;
 
 
@@ -16,7 +18,7 @@ constructor(puntos:number)
 {
     super();
     this.Puntos=puntos;
-  
+    this.explosion=new Explosion;
    
     this.animaIntro = new AnimatedSprite(
         [
@@ -43,35 +45,16 @@ constructor(puntos:number)
     this.animaIntro.position.x=2000;
     this.animaIntro.position.y=1500;
 
-    this.explosion = new AnimatedSprite(
-        [
-
-            Texture.from("explota0"),
-            Texture.from("explota1"),
-            Texture.from("explota2"),
-            Texture.from("explota3"),
-            Texture.from("explota4"),
-            Texture.from("explota5"),
-            Texture.from("explota6"),
-            Texture.from("explota7"),
-            Texture.from("explota8"),
-            Texture.from("explota9"),
-            Texture.from("explota10"),
-            Texture.from("explota11"),
-        ],true
-    );
-    this.explosion.play();
-    this.explosion.anchor.set(0.5, 1);
-    this.explosion.animationSpeed = 0.2;
-    this.explosion.scale.x = 5;
-    this.explosion.scale.y = 5;
-    this.explosion.scale.x=0.5;
-    this.explosion.scale.y=0.5;
-
    
+    this.explosion.x=SceneManager.WIDTH/2;
+    this.explosion.y=SceneManager.HEIGHT/1.2;
+    
+    this.explosion.scale.x=3;
+    this.explosion.scale.y=3;
+    
    
     Keyboard.down.on("KeyB", this.onKeyB, this);
-        Keyboard.down.on("KeyS", this.onKeyS, this);
+    Keyboard.down.on("KeyS", this.onKeyS, this);
         
    
    

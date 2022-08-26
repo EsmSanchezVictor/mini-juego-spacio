@@ -33,7 +33,7 @@ export class Explosion extends PhysiscContainer {
         this.explosion.anchor.set(0.5, 1);
         this.explosion.animationSpeed = 0.2;
         
-        this.explosion.autoUpdate=false;
+        this.explosion.autoUpdate=true;
         this.explosion.scale.x=0.5;
         this.explosion.scale.y=0.5;
 
