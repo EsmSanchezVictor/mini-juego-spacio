@@ -47,7 +47,7 @@ constructor(puntos:number)
 
    
     this.explosion.x=SceneManager.WIDTH/2;
-    this.explosion.y=SceneManager.HEIGHT/1.2;
+    this.explosion.y=SceneManager.HEIGHT/1.2-100;
     
     this.explosion.scale.x=3;
     this.explosion.scale.y=3;

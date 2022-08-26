@@ -27,7 +27,7 @@ export class Explosion extends PhysiscContainer {
                 Texture.from("explota11"),
                
                
-            ],true
+            ],false
         );
         this.explosion.play();
         this.explosion.anchor.set(0.5, 1);
@@ -36,7 +36,7 @@ export class Explosion extends PhysiscContainer {
         this.explosion.autoUpdate=true;
         this.explosion.scale.x=0.5;
         this.explosion.scale.y=0.5;
-
+           
        
         this.addChild(this.explosion);
     }
