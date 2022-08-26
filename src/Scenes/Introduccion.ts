@@ -1,6 +1,6 @@
 
 
-import { Texture,Text,AnimatedSprite} from "pixi.js";
+import { Texture,Text,AnimatedSprite, Sprite} from "pixi.js";
 import { Lokihat } from "../IntroGame/Lokihat";  // imagen de loki con sombrero 
 import { sound } from "@pixi/sound";
 import { Nivel } from "../IntroGame/Nivel"; // mensaje de estado de nivel
@@ -133,7 +133,24 @@ export class Introduccion extends SceneBase {
          this.addChild(this.adelante);
          this.addChild(this.configura);
          this.addChild(myText);
+       //----------------
+
+       const Aa: Sprite = Sprite.from("Aa");
+       const flecha: Sprite = Sprite.from("flecha");
        
+       Aa.scale.set(0.1,0.1);
+      
+       Aa.x=this.posRelX+155;
+       Aa.y=this.posRelY+605; 
+
+       flecha.scale.set(0.1,0.1);
+       flecha.x=this.posRelX+245;
+       flecha.y=this.posRelY+555; 
+
+       this.addChild(Aa);     
+       this.addChild(flecha); 
+
+       //---------------
          
          this.soundrack();
          

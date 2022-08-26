@@ -1,15 +1,16 @@
 import { SceneManager } from "../utils/SceneManager";
 import { SceneBase } from "../utils/SceneBase";
 import { AnimatedSprite, Text, Texture} from "pixi.js";
-import { Keyboard } from "../utils/Keyboard";
 import { Introduccion } from "./Introduccion";
 import { Puntos } from "./Puntos";
 import { Explosion } from "../game/Explosion";
+import { Button } from "../ui/Button";
 
 export class Explota extends SceneBase
 {
     private animaIntro:AnimatedSprite;
-   // private explosion:AnimatedSprite;
+    private adelante: Button;
+    private retorno: Button;
    private explosion:Explosion;
     private Puntos:number;
 
@@ -53,11 +54,6 @@ constructor(puntos:number)
     this.explosion.scale.y=3;
     
    
-    Keyboard.down.on("KeyB", this.onKeyB, this);
-    Keyboard.down.on("KeyS", this.onKeyS, this);
-        
-   
-   
     
     this.addChild(this.animaIntro);
     this.addChild(this.explosion);
@@ -68,28 +64,49 @@ constructor(puntos:number)
     myText3.position.y=SceneManager.HEIGHT/3-100;
     myText3.scale.set(1);
     this.addChild(myText3); 
-    const myText1: Text= new Text("Pulsa la tecla B para Reiniciar",{fontSize: 50,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
-    myText1.position.x=SceneManager.WIDTH/3;
-    myText1.position.y=SceneManager.HEIGHT-100;
-    myText1.scale.set(1);
-    this.addChild(myText1); 
-    const myText2: Text= new Text("Pulsa la tecla S para ver puntos",{fontSize: 50,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
-    myText2.position.x=SceneManager.WIDTH/3;
-    myText2.position.y=SceneManager.HEIGHT-200;
+    const myText2: Text= new Text("Ver puntos   Reiniciar",{fontSize: 50,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
+    myText2.position.x=SceneManager.WIDTH/3+90;
+    myText2.position.y=SceneManager.HEIGHT/1.2+100;
     myText2.scale.set(1);
     this.addChild(myText2); 
+    this.adelante= new Button(Texture.from("adelante"),"Right");
+    this.adelante.on("buttonClick", this.clickAdelante,this)
+ 
+    this.adelante.x=SceneManager.WIDTH/3+225;
+    this.adelante.y=SceneManager.HEIGHT/1.2;
+    this.adelante.scale.set(0.1);
+    this.adelante.interactive= true;
+    this.adelante.buttonMode= true;
+    this.addChild(this.adelante);
+
+    this.retorno= new Button(Texture.from("retorno"),"Right");
+    this.retorno.on("buttonClick", this.clickRetorno,this)
+ 
+    this.retorno.x=SceneManager.WIDTH/3+345;
+    this.retorno.y=SceneManager.HEIGHT/1.2;
+    this.retorno.scale.set(0.1);
+    this.retorno.interactive= true;
+    this.retorno.buttonMode= true;
+    this.addChild(this.retorno);
+   
 
 }  
    
-private onKeyB(): void 
-{
-    SceneManager.changeScene(new Introduccion());
-}
-private onKeyS(): void 
-{
+
+
+
+
+
+private clickAdelante():void {
     SceneManager.changeScene(new Puntos(this.Puntos));
-}
-    public update(): void {
+    }
+
+private clickRetorno():void {
+    SceneManager.changeScene(new Introduccion());
+    }
+
+public update(): void 
+    {
     }
 
 }

@@ -91,6 +91,9 @@ export const asseets=[
     { url: "./iconos/MusicOn.png", name: "MusicOn" },
     { url: "./iconos/MusicOff.png", name: "MusicOff" },
     { url: "./iconos/config.png", name: "config" },
+    { url: "./iconos/retorno.png", name: "retorno" },
+    { url: "./iconos/A.png", name: "Aa" },
+    { url: "./iconos/FLECHA.png", name: "flecha" },
 
 //fondo in out
 

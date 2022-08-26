@@ -4,12 +4,10 @@ import { Lokihat } from "../IntroGame/Lokihat";  // imagen de loki con sombrero
 
 import { Nivel } from "../IntroGame/Nivel"; // mensaje de estado de nivel
 import { Intro } from "../IntroGame/Intro"; // cantidad de puntos y objetivos obtiendos 
-
-
 import { SceneManager } from "../utils/SceneManager";
 import { SceneBase } from "../utils/SceneBase";
-import { Keyboard } from "../utils/Keyboard";
 import { Introduccion } from "./Introduccion";
+import { Button } from "../ui/Button";
 
 
 
@@ -20,10 +18,9 @@ import { Introduccion } from "./Introduccion";
 export class Puntos extends SceneBase {
     public posRelX: number;
     public posRelY: number;
-  //  private panelPlane: NineSlicePlane;
     public valor = true;
     public valor2= false;
-   // private mandos: Mandos;
+    private adelante: Button;
     private animaIntro:AnimatedSprite;
     
     public worldI: Container;
@@ -90,7 +87,7 @@ export class Puntos extends SceneBase {
 
         this.addChild(this.worldI)
 
-        Keyboard.down.on("KeyB", this.onKeyB, this);
+       
 
          const myText: Text= new Text("OBTUVISTE: "+ puntos,{fontSize: 60,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
          
@@ -98,25 +95,37 @@ export class Puntos extends SceneBase {
          myText.position.y=SceneManager.HEIGHT/5;
          myText.scale.set(1);
  
-         const myText1: Text= new Text("Pulsa la tecla B para Reiniciar",{fontSize: 50,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
-         myText1.position.x=SceneManager.WIDTH/3;
-         myText1.position.y=SceneManager.HEIGHT-300;
-         myText1.scale.set(1);
- 
+        
          this.worldI.addChild(myText);
-         this.worldI.addChild(myText1);
-      
 
+
+         this.adelante= new Button(Texture.from("retorno"),"Right");
+         this.adelante.on("buttonClick", this.clickAdelante,this)
+      
+         this.adelante.x=this.posRelX+195;
+         this.adelante.y=this.posRelY+385;
+         this.adelante.scale.set(0.1);
+         this.adelante.interactive= true;
+         this.adelante.buttonMode= true;
+         this.addChild(this.adelante);
+      
+         const myText2: Text= new Text("Reiniciar",{fontSize: 50,fill:0x0aFfFE, fontFamily:"Comic Sans MS"});
+         myText2.position.x=SceneManager.WIDTH/3+200;
+         myText2.position.y=SceneManager.HEIGHT/2+300;
+         myText2.scale.set(1);
+         this.addChild(myText2);
     }
     
-    private onKeyB(): void 
-    {
+   
+    private clickAdelante():void {
+   
         SceneManager.changeScene(new Introduccion());
+      
+        
     }
     public update(): void {
     }
-
-
+   
 
     }
 
